@@ -34,13 +34,16 @@ public class ExchangeRate {
 
 	@Column(name = "timestamp", nullable = false)
 	private LocalDateTime timestamp;
+	
+	@Column(name = "provider", nullable = false)
+	private String provider;
 
 	public ExchangeRate() {
 
 	}
 
 	public ExchangeRate(Long id, String sourceCurrency, String targetCurrency, String currencyPair, BigDecimal rate,
-			LocalDateTime timestamp) {
+			LocalDateTime timestamp, String provider) {
 		super();
 		this.id = id;
 		this.sourceCurrency = sourceCurrency;
@@ -48,6 +51,7 @@ public class ExchangeRate {
 		this.currencyPair = currencyPair;
 		this.rate = rate;
 		this.timestamp = timestamp;
+		this.provider = provider;
 	}
 
 	@PrePersist
@@ -104,10 +108,18 @@ public class ExchangeRate {
 		this.timestamp = timestamp;
 	}
 
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
+
 	@Override
 	public String toString() {
 		return "ExchangeRate [id=" + id + ", sourceCurrency=" + sourceCurrency + ", targetCurrency=" + targetCurrency
-				+ ", currencyPair=" + currencyPair + ", rate=" + rate + ", timestamp=" + timestamp + "]";
+				+ ", currencyPair=" + currencyPair + ", rate=" + rate + ", timestamp=" + timestamp  + ", provider=" + provider + "]";
 	}
 
 	public boolean isStale(int cacheDurationInMinutes) {
