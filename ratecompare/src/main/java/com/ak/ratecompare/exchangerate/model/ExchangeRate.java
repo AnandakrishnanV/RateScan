@@ -1,4 +1,4 @@
-package com.ak.ratecompare.exchangerate;
+package com.ak.ratecompare.exchangerate.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -42,16 +42,14 @@ public class ExchangeRate {
 
 	}
 
-	public ExchangeRate(Long id, String sourceCurrency, String targetCurrency, String currencyPair, BigDecimal rate,
-			LocalDateTime timestamp, String provider) {
+	public ExchangeRate(String sourceCurrency, String targetCurrency, String provider, BigDecimal rate,
+			LocalDateTime timestamp) {
 		super();
-		this.id = id;
 		this.sourceCurrency = sourceCurrency;
 		this.targetCurrency = targetCurrency;
-		this.currencyPair = currencyPair;
+		this.provider = provider;
 		this.rate = rate;
 		this.timestamp = timestamp;
-		this.provider = provider;
 	}
 
 	@PrePersist
@@ -64,9 +62,9 @@ public class ExchangeRate {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public void setId(Long id) {  ---> Auto gen: So no need to set
+//		this.id = id;
+//	}
 
 	public String getSourceCurrency() {
 		return sourceCurrency;
@@ -88,9 +86,9 @@ public class ExchangeRate {
 		return currencyPair;
 	}
 
-	public void setCurrencyPair(String currencyPair) {
-		this.currencyPair = currencyPair;
-	}
+//	public void setCurrencyPair(String currencyPair) {			---> Auto gen
+//		this.currencyPair = currencyPair;
+//	}
 
 	public BigDecimal getRate() {
 		return rate;
