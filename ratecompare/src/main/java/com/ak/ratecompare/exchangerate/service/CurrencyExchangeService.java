@@ -33,8 +33,10 @@ public class CurrencyExchangeService {
         
         Optional<ExchangeRate> cachedRate = exchangeRateRepository
             .findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(sourceCurrency, targetCurrency, provider.getName());
-		
-		if(cachedRate.isPresent() && !cachedRate.get().isStale(Integer.parseInt(cacheDurationInMinutes))) {
+        
+        System.out.println(cachedRate.get().getId());
+        
+        if(cachedRate.isPresent() && !cachedRate.get().isStale(Integer.parseInt(cacheDurationInMinutes))) {
 			return cachedRate.get();
 		}
 		else {
@@ -42,10 +44,10 @@ public class CurrencyExchangeService {
 			if (client != null) {
 	            // Fetch and save new rate
 				ExchangeRate newRate = client.fetchRate(sourceCurrency, targetCurrency);
-				exchangeRateRepository.save(newRate);
+				return exchangeRateRepository.save(newRate);
 	        }
-			// add exception handling
-			return null;
+			 // Handle the case where the client is not found
+		    throw new RuntimeException("Exchange rate provider client not found.");
 		}
 	}
 
