@@ -39,18 +39,21 @@ public class ExchangeRateRepositoryTests {
 		Optional<ExchangeRate> rateOptional = exchangeRateRepository.findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc("USD", "EUR", wiseProvider.getName());
 	
 		assertThat(rateOptional).isPresent();
-	    assertThat(rateOptional.get().getProvider()).isEqualTo("Wise");
+	    assertThat(rateOptional.get().getProvider().getName()).isEqualTo("Wise");
 	}
 	
 	@Test
 	public void whenFindByCurrencyPairAndProvider_thenReturnRatesWithTestProvider() {
 		
 		Provider testProvider = new Provider("TestProvider", "https://api.test.com", "testApiKey", null, null);
+		providerRepository.save(testProvider);
 		ExchangeRate testRate = new ExchangeRate("USD", "EUR", testProvider, new BigDecimal("0.95"), LocalDateTime.now());
+		exchangeRateRepository.save(testRate);
 		
 		Optional<ExchangeRate> rateOptional = exchangeRateRepository.findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc("USD", "EUR", "TestProvider");
 	
 		assertThat(rateOptional).isPresent();
-	    assertThat(rateOptional.get().getProvider()).isEqualTo("TestProvider");
+	    assertThat(rateOptional.get().getProvider().getName()).isEqualTo("TestProvider");
+	    assertThat(rateOptional.get().getRate()).isEqualTo(new BigDecimal("0.95").setScale(6));
 	}
 }
