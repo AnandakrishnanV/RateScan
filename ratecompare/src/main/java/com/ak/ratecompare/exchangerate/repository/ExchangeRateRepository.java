@@ -21,5 +21,5 @@ public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, Long
     		+ "er.targetCurrency = :targetCurrency AND "
     		+ "p.name = :providerName "
     		+ "ORDER BY er.timestamp DESC")
-    Optional<ExchangeRate> findBySourceCurrencyAndTargetCurrencyAndProviderOrderByTimestampDesc(String sourceCurrency, String targetCurrency, String providerName);
+    Optional<ExchangeRate> findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(String sourceCurrency, String targetCurrency, String providerName);
 }

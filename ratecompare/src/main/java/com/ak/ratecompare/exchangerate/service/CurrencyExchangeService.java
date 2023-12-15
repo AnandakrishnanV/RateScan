@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.ak.ratecompare.exchangerate.interfaces.ExchangeRateApiClient;
 import com.ak.ratecompare.exchangerate.model.ExchangeRate;
+import com.ak.ratecompare.exchangerate.model.Provider;
 import com.ak.ratecompare.exchangerate.repository.ExchangeRateRepository;
+import com.ak.ratecompare.exchangerate.repository.ProviderRepository;
 
 @Service
 public class CurrencyExchangeService {
@@ -21,10 +23,16 @@ public class CurrencyExchangeService {
 	
 	@Autowired
     private ExchangeRateClientManagerService clientManager;
+	
+	@Autowired
+    private ProviderRepository providerRepository;
 																										
-	public ExchangeRate getExchangeRate(String sourceCurrency, String targetCurrency, String provider) {
+	public ExchangeRate getExchangeRate(String sourceCurrency, String targetCurrency, String providerName) {
 		
-		Optional<ExchangeRate> cachedRate = exchangeRateRepository.findBySourceCurrencyAndTargetCurrencyAndProviderOrderByTimestampDesc(sourceCurrency, targetCurrency, provider);
+		Provider provider = providerRepository.findById(providerName).orElseThrow(() -> new RuntimeException("Provider not found"));
+        
+        Optional<ExchangeRate> cachedRate = exchangeRateRepository
+            .findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(sourceCurrency, targetCurrency, provider.getName());
 		
 		if(cachedRate.isPresent() && !cachedRate.get().isStale(cacheDurationInMinutes)) {
 			return cachedRate.get();

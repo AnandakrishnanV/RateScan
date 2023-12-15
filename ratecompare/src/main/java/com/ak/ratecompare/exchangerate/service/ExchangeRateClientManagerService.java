@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ak.ratecompare.exchangerate.interfaces.ExchangeRateApiClient;
+import com.ak.ratecompare.exchangerate.model.Provider;
 
 @Service
 public class ExchangeRateClientManagerService {
@@ -13,10 +14,10 @@ public class ExchangeRateClientManagerService {
 	@Autowired
 	private List<ExchangeRateApiClient> apiClients;
 
-	public ExchangeRateApiClient findClientByName(String providerName) {
+	public ExchangeRateApiClient findClientByName(Provider provider) {
 
 		return apiClients.stream()
-				.filter(client -> client.getProviderName().equals(providerName))
+				.filter(client -> client.getProviderName().equals(provider.getName()))
 				.findFirst()
 				.orElse(null);
 	}
