@@ -14,12 +14,5 @@ public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, Long
     List<ExchangeRate> findBySourceCurrencyAndTargetCurrencyOrderByTimestampDesc(String sourceCurrency, String targetCurrency);
     
     // Find the latest exchange rate for a specific currency pair from a specific provider
-    @Query("SELECT er "
-    		+ "FROM ExchangeRate er "
-    		+ "JOIN er.provider p "
-    		+ "WHERE er.sourceCurrency = :sourceCurrency AND "
-    		+ "er.targetCurrency = :targetCurrency AND "
-    		+ "p.name = :providerName "
-    		+ "ORDER BY er.timestamp DESC")
-    Optional<ExchangeRate> findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(String sourceCurrency, String targetCurrency, String providerName);
+    Optional<ExchangeRate> findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(String sourceCurrency, String targetCurrency, String provider);
 }

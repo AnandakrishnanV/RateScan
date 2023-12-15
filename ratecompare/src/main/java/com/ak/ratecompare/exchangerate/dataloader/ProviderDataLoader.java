@@ -15,9 +15,14 @@ import com.ak.ratecompare.exchangerate.repository.ProviderRepository;
 @Order(1)
 public class ProviderDataLoader implements CommandLineRunner {
 	
-	@Value("${wise.api.url}")
+//	@Value("${wise.api.url}")
+//    private String wiseApiUrl;
+//    @Value("${wise.api.key}")
+//    private String wiseApiKey;
+    
+    @Value("${wise.testapi.url}")
     private String wiseApiUrl;
-    @Value("${wise.api.key}")
+    @Value("${wise.testapi.key}")
     private String wiseApiKey;
 
     @Value("${revolut.api.url}")
