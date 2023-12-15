@@ -19,7 +19,7 @@ public class CurrencyExchangeService {
 	private ExchangeRateRepository exchangeRateRepository;
 	
 	@Value("${app.cacheDurationInMinutes}")
-    private int cacheDurationInMinutes;
+    private String cacheDurationInMinutes;
 	
 	@Autowired
     private ExchangeRateClientManagerService clientManager;
@@ -34,7 +34,7 @@ public class CurrencyExchangeService {
         Optional<ExchangeRate> cachedRate = exchangeRateRepository
             .findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(sourceCurrency, targetCurrency, provider.getName());
 		
-		if(cachedRate.isPresent() && !cachedRate.get().isStale(cacheDurationInMinutes)) {
+		if(cachedRate.isPresent() && !cachedRate.get().isStale(Integer.parseInt(cacheDurationInMinutes))) {
 			return cachedRate.get();
 		}
 		else {
