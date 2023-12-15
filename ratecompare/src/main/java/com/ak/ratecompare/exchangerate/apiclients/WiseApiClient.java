@@ -1,6 +1,7 @@
 package com.ak.ratecompare.exchangerate.apiclients;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,6 @@ public class WiseApiClient implements ExchangeRateApiClient{
             .orElseThrow(() -> new RuntimeException("Provider not found"));
 
         // Dummy implementation - returns a predefined exchange rate
-        return new ExchangeRate(sourceCurrency, targetCurrency, wiseProvider, new BigDecimal("0.85"), LocalDateTime.now());
+        return new ExchangeRate(sourceCurrency, targetCurrency, wiseProvider, new BigDecimal("0.845435345").setScale(6, RoundingMode.HALF_UP), LocalDateTime.now());
 	}
 }

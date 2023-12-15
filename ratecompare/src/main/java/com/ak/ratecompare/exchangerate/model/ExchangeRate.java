@@ -31,7 +31,7 @@ public class ExchangeRate {
 	@Column(name = "currency_pair", nullable = false)
 	private String currencyPair; // Concatenated source and target currencies
 
-	@Column(name = "rate", nullable = false, precision = 15, scale = 6)
+	@Column(name = "rate", nullable = false, precision = 10, scale = 6)
 	private BigDecimal rate;
 
 	@Column(name = "timestamp", nullable = false)
