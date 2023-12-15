@@ -29,8 +29,6 @@ public class ExchangeRateController {
 		List<ExchangeRate> exchangeRates = aggregatorService.getExchangeRateFromAllProviders(sourceCurrency,
 				targetCurrency);
 		
-		// System.out.println(exchangeRates.get(0).getId());
-		
 		List<ExchangeRateDTO> dtoList = exchangeRates.stream()
 				.map((exchangeRate) -> ExchangeRateMapper.toDTO(exchangeRate))
 				.collect(Collectors.toList());
