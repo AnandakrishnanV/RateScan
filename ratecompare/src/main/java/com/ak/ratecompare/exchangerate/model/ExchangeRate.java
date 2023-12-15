@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -35,14 +37,15 @@ public class ExchangeRate {
 	@Column(name = "timestamp", nullable = false)
 	private LocalDateTime timestamp;
 	
-	@Column(name = "provider", nullable = false)
-	private String provider;
+	@ManyToOne
+    @JoinColumn(name = "provider", referencedColumnName = "name")
+	private Provider provider;
 
 	public ExchangeRate() {
 
 	}
 
-	public ExchangeRate(String sourceCurrency, String targetCurrency, String provider, BigDecimal rate,
+	public ExchangeRate(String sourceCurrency, String targetCurrency, Provider provider, BigDecimal rate,
 			LocalDateTime timestamp) {
 		super();
 		this.sourceCurrency = sourceCurrency;
@@ -106,11 +109,11 @@ public class ExchangeRate {
 		this.timestamp = timestamp;
 	}
 
-	public String getProvider() {
+	public Provider getProvider() {
 		return provider;
 	}
 
-	public void setProvider(String provider) {
+	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
 
