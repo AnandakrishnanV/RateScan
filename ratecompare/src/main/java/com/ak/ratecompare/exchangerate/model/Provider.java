@@ -19,6 +19,10 @@ public class Provider {
 	private String currentToken;
 	private LocalDateTime tokenExpiry;
 	
+	public Provider () {
+		
+	}
+	
 	public Provider(String name, String apiUrl, String apiKey, String currentToken, LocalDateTime tokenExpiry) {
 		super();
 		this.name = name;
