@@ -35,7 +35,8 @@ public class ProviderDataLoader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		List<Provider> providers = Arrays
-				.asList(new Provider("Wise", wiseApiUrl, wiseApiKey, null, null));
+				.asList(new Provider("Wise", wiseApiUrl, wiseApiKey, null, null),
+						new Provider("Revolut", revolutApiUrl, revolutApiKey, null, null));
 		
 		for (Provider provider: providers) {
 			providerRepository.findById(provider.getName()).ifPresentOrElse(existingProvider -> updateProvider(existingProvider, provider), () -> providerRepository.save(provider));
