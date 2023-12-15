@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ak.ratecompare.exchangerate.ExchangeRateApiClient;
+import com.ak.ratecompare.exchangerate.interfaces.ExchangeRateApiClient;
 
 @Service
 public class ExchangeRateClientManagerService {

@@ -1,4 +1,4 @@
-package com.ak.ratecompare.exchangerate;
+package com.ak.ratecompare.exchangerate.interfaces;
 
 import com.ak.ratecompare.exchangerate.model.ExchangeRate;
 
