@@ -35,5 +35,19 @@ public class ExchangeRateController {
 		
 		return ResponseEntity.ok(dtoList);
 	}
+	
+//	@GetMapping --> Next Step
+//	public ResponseEntity<List<ExchangeRateDTO>> getExchangeQuotes(@RequestParam String sourceCurrency,
+//			@RequestParam String targetCurrency, @RequestParam double sourceAmount) {
+//
+//		List<ExchangeRate> exchangeRates = aggregatorService.getExchangeRateFromAllProviders(sourceCurrency,
+//				targetCurrency);
+//		
+//		List<ExchangeRateDTO> dtoList = exchangeRates.stream()
+//				.map((exchangeRate) -> ExchangeRateMapper.toDTO(exchangeRate))
+//				.collect(Collectors.toList());
+//		
+//		return ResponseEntity.ok(dtoList);
+//	}
 
 }
