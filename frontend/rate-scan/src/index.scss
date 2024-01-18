@@ -1,0 +1,24 @@
+@import 'bootstrap/scss/bootstrap';
+
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: rgb(134,147,138);
+    background: linear-gradient(180deg, rgba(134,147,138,1) 0%, rgba(45,63,68,1) 100%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+}

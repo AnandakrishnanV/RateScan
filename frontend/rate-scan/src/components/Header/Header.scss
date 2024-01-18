@@ -1,0 +1,27 @@
+
+.header {
+  background-color: #e9f7f0; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: adds depth
+
+  .container {
+    .logo {
+      max-width: 50px; // Logo size
+      margin-right: 1rem;
+    }
+
+    .site-name {
+      color: #1e3932; // Off-white text for contrast
+      margin: 0;
+      font-size: 2rem; // Example size, adjust as needed
+      font-weight: 700;
+    }
+  
+    .nav-link {
+      color: goldenrod; // Off-white text for links
+      font-weight: 600;
+      &:hover {
+        color: #a5d6a7; // Light green for hover state
+      }
+    }
+  }
+}

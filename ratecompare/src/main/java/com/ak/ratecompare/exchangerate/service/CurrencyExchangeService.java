@@ -33,8 +33,8 @@ public class CurrencyExchangeService {
         
         Optional<ExchangeRate> cachedRate = exchangeRateRepository
             .findTopBySourceCurrencyAndTargetCurrencyAndProviderNameOrderByTimestampDesc(sourceCurrency, targetCurrency, provider.getName());
-        
-        if(cachedRate.isPresent() && !cachedRate.get().isStale(Integer.parseInt(cacheDurationInMinutes))) {
+        														// Integer.parseInt(cacheDurationInMinutes)
+        if(cachedRate.isPresent() && !cachedRate.get().isStale(1)) {
 			return cachedRate.get();
 		}
 		else {
