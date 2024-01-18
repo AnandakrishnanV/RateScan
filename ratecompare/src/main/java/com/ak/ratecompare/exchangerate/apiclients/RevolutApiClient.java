@@ -1,10 +1,9 @@
 package com.ak.ratecompare.exchangerate.apiclients;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 import javax.management.RuntimeErrorException;
 
@@ -43,7 +42,7 @@ public class RevolutApiClient implements ExchangeRateApiClient{
         WebClient webClient = webClientBuilder.build();
         
         String url = UriComponentsBuilder.fromUriString(revolutProvider.getApiUrl())
-        		.path("exchange/quote")
+        		.path("/exchange/quote")
         		.queryParam("amount", 100) // Hard coding, since we only want rate
         		.queryParam("country", "IN") // Hard coding, since we only want rate
         		.queryParam("fromCurrency", sourceCurrency)
@@ -51,65 +50,120 @@ public class RevolutApiClient implements ExchangeRateApiClient{
         		.queryParam("toCurrency", targetCurrency)
         		.toUriString();
         
-        Mono<RevolutExchangeRateResponse[]> responseMono = webClient.get()
+        Mono<RevolutExchangeRateResponse> responseMono = webClient.get()
         		.uri(url)
         		//.header(HttpHeaders.AUTHORIZATION, "Bearer " + revolutProvider.getApiKey())
+        		.header(HttpHeaders.ACCEPT_LANGUAGE, "en")
                 .retrieve()
-                .bodyToMono(RevolutExchangeRateResponse[].class);
+                .bodyToMono(RevolutExchangeRateResponse.class);
         
-        RevolutExchangeRateResponse[] responses = responseMono.block();
+        RevolutExchangeRateResponse responses = responseMono.block();
         
-        if (responses != null && responses.length > 0) {
-        	RevolutExchangeRateResponse response = responses[0];
+        if (responses != null) {
+        	RevolutExchangeRateResponse response = responses;
         	
-//        	System.out.println(response.toString());
-//        	System.out.println(response.getSource());
-//        	System.out.println(sourceCurrency == response.getSource());
+        	System.out.println(response.toString());
+        	System.out.println(response.getFrom());
+        	System.out.println(sourceCurrency == response.getFrom());
         	
-        	if (sourceCurrency.equals(response.getSource()) && targetCurrency.equals(response.getTarget())) {
-        		return new ExchangeRate(sourceCurrency, targetCurrency, revolutProvider, response.getRate(), response.getFormattedTimeToLocalDateTime());        		
+        	if (sourceCurrency.equals(response.getFrom()) && targetCurrency.equals(response.getTo())) {
+        		return new ExchangeRate(sourceCurrency, targetCurrency, revolutProvider, response.getRate(), response.getTimestamp());        		
         	}
         	else {
-        		throw new RuntimeErrorException(null, "Source and Target Do Not ");
+        		throw new RuntimeErrorException(null, "Source and Target Do Not Match");
         	}
         }
         
-        throw new RuntimeException("No exchange rate data received from Wise");
-        // Dummy implementation - returns a predefined exchange rate
-        // return new ExchangeRate(sourceCurrency, targetCurrency, wiseProvider, new BigDecimal("0.845435345").setScale(6, RoundingMode.HALF_UP), LocalDateTime.now());
+        throw new RuntimeException("No exchange rate data received from Revolut");
+        
 	}
 	
-	private static class RevolutExchangeRateResponse {
-		
-		private BigDecimal rate;
-		private String source;
-		private String target;
-		private String time;
-		
+	public static class RevolutExchangeRateResponse {
+	    private RateDetails rate; // Corresponds to the "rate" part of the JSON
+	    
+	    public RevolutExchangeRateResponse() {
+		}
+
+	    public RevolutExchangeRateResponse(RateDetails rate) {
+			super();
+			this.rate = rate;
+		}
+
 		public BigDecimal getRate() {
-			return rate;
-		}
-		public String getSource() {
-			return source;
-		}
-		public String getTarget() {
-			return target;
-		}
-		public String getTime() {
-			return time;
-		}
-		
-		@Override
+	        return rate != null ? rate.getRate() : null;
+	    }
+	    
+	    public String getFrom() {
+	    	return rate != null ? rate.getFrom() : null;
+	    }
+	    
+	    public String getTo() {
+	    	return rate != null ? rate.getTo() : null;
+	    }
+
+	    public LocalDateTime getTimestamp() {
+	        if (rate != null && rate.getTimestamp() != null) {
+	            return rate.getFormattedTimeToLocalDateTime();
+	        }
+	        return null;
+	    }
+
+	    @Override
 		public String toString() {
-			return "RevolutExchangeRateResponse [rate=" + rate + ", source=" + source + ", target=" + target + ", time="
-					+ time + "]";
+			return "RevolutExchangeRateResponse [rate=" + rate.toString();
 		}
-		
-		public LocalDateTime getFormattedTimeToLocalDateTime() {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-			OffsetDateTime odt = OffsetDateTime.parse(this.time, formatter);
-			return odt.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
-		}
-		
+
+
+
+		private static class RateDetails {
+	    	private BigDecimal rate;
+			private String from;
+			private String to;
+			private String timestamp;
+			
+			public RateDetails() {
+			}
+			
+			public RateDetails(BigDecimal rate, String from, String to, String timestamp) {
+				super();
+				this.rate = rate;
+				this.from = from;
+				this.to = to;
+				this.timestamp = timestamp;
+			}
+			
+			public BigDecimal getRate() {
+				return rate;
+			}
+			public String getFrom() {
+				return from;
+			}
+			public String getTo() {
+				return to;
+			}
+			public String getTimestamp() {
+				return timestamp;
+			}
+			
+			@Override
+			public String toString() {
+				return "RevolutExchangeRateResponse [rate=" + rate + ", from=" + from + ", to=" + to + ", timestamp="
+						+ timestamp + "]";
+			}
+			
+			public LocalDateTime getFormattedTimeToLocalDateTime() {
+//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+//				OffsetDateTime odt = OffsetDateTime.parse(this.timestamp, formatter);
+//				return odt.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+				
+				if (this.timestamp != null) {
+			        return LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(this.timestamp)), ZoneId.systemDefault());
+			    }
+			    return null;
+			}
+	    }
+
+	    // Other fields and getters corresponding to the JSON structure
 	}
+	
 }
