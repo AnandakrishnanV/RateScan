@@ -30,8 +30,7 @@ public class ProviderDataLoader implements CommandLineRunner {
     @Value("${revolut.api.key}")
     private String revolutApiKey;
     
-    
-	private final ProviderRepository providerRepository;
+    private final ProviderRepository providerRepository;
 
 	public ProviderDataLoader(ProviderRepository providerRepository) {
 		this.providerRepository = providerRepository;

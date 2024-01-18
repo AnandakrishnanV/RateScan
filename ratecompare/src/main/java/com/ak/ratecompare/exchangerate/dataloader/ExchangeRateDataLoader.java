@@ -33,9 +33,9 @@ public class ExchangeRateDataLoader implements CommandLineRunner {
 		Provider revolutProvider = providerRepository.findById("Revolut")
 				.orElseThrow(() -> new RuntimeException("Provider not Found!"));
 
-		ExchangeRate rate1 = new ExchangeRate("USD", "EUR", wiseProvider, new BigDecimal("0.45"), LocalDateTime.now());
+		ExchangeRate rate1 = new ExchangeRate("USD", "EUR", wiseProvider, new BigDecimal("0.45"), LocalDateTime.now().minusDays(1));
 		ExchangeRate rate2 = new ExchangeRate("USD", "EUR", revolutProvider, new BigDecimal("0.44"),
-				LocalDateTime.now());
+				LocalDateTime.now().minusDays(1));
 
 		exchangeRateRepository.save(rate1);
 		exchangeRateRepository.save(rate2);
