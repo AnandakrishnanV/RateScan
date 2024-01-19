@@ -1,13 +1,24 @@
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select'
 import './CurrencyComponent.scss'
+import { fetchExchangeRate } from '../../services/apiService'
 
 const CurrencyComponent = () => {
   const { control, handleSubmit, register } = useForm()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data)
-    // Add your form submission logic here
+
+    try {
+      const result = await fetchExchangeRate(
+        data.sourceCurrency.value,
+        data.targetCurrency.value,
+        data.amount,
+      )
+      console.log(result)
+    } catch (error) {
+      console.error('API call failed:', error)
+    }
   }
 
   const customStyles = {
@@ -33,9 +44,9 @@ const CurrencyComponent = () => {
             name="sourceCurrency"
             control={control}
             render={({ field }) => (
-              <Select 
-                {...field} 
-                options={currencyOptions} 
+              <Select
+                {...field}
+                options={currencyOptions}
                 styles={customStyles}
                 placeholder="Select Source Currency"
               />
@@ -47,8 +58,8 @@ const CurrencyComponent = () => {
             name="targetCurrency"
             control={control}
             render={({ field }) => (
-              <Select 
-                {...field} 
+              <Select
+                {...field}
                 options={currencyOptions}
                 styles={customStyles}
                 placeholder="Select Target Currency"
@@ -59,19 +70,23 @@ const CurrencyComponent = () => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="amount" className="form-label">Amount:</label>
-        <input 
-          type="number" 
-          className="form-control" 
-          id="amount" 
-          {...register("amount", { required: true })} 
+        <label htmlFor="amount" className="form-label">
+          Amount:
+        </label>
+        <input
+          type="number"
+          className="form-control"
+          id="amount"
+          {...register('amount', { required: true })}
           placeholder="Enter amount"
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">Convert</button>
+      <button type="submit" className="btn btn-primary">
+        Convert
+      </button>
     </form>
-  );
-};
+  )
+}
 
 export default CurrencyComponent
