@@ -1,0 +1,45 @@
+.footer {
+    background-color: #e9f7f0; // Dark background
+    color: #F29E4C; // White text color
+    padding: 1rem 0;
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap; // Ensure responsiveness
+  
+      @media (max-width: 576px) { // Adjust breakpoint as needed
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  
+    .logo-container {
+      img {
+        max-width: 150px; // Adjust logo size as needed
+      }
+    }
+  
+    .footer-links {
+      a {
+        color: #F29E4C;
+        text-decoration: none;
+        margin-left: 1rem;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      @media (max-width: 576px) {
+        margin-top: 1rem;
+      }
+    }
+  
+    .footer-info {
+      p {
+        margin: 0; // Remove default margin
+      }
+    }
+  }

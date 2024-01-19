@@ -1,5 +1,3 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import './Header.scss'
 import reactLogo from '../../assets/react.svg'
 import Navigation from './Navigation'

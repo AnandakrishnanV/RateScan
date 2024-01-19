@@ -1,6 +1,5 @@
-import React from "react";
+import './HeroComponent.scss';
 import MainTagline from "./MainTagline";
-import './HeroComponent.scss'
 
 const HeroComponent = () => {
     return (

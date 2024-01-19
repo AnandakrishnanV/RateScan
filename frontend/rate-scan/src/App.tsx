@@ -1,22 +1,23 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes } from 'react-router-dom'
 import './App.scss'
+import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import HeroComponent from './components/Hero/HeroComponent'
+import CurrencyComponent from './components/Currency/CurrencyComponent'
 
 const App = () => {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="rate-scan-app">
       <BrowserRouter>
-      <Header />
-      <HeroComponent />
-        <Routes>
-          {/* <Route path="/" element={<LoginComponent />}></Route> */}
-        </Routes>
+        <Header />
+        <main className="site-container">
+          <HeroComponent />
+          <CurrencyComponent />
+          <Routes>
+            {/* <Route path="/" element={<LoginComponent />}></Route> */}
+          </Routes>
+        </main>
+        <Footer />
       </BrowserRouter>
     </div>
   )
