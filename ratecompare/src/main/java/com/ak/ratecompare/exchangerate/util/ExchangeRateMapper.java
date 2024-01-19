@@ -34,7 +34,7 @@ public static ExchangeRateAmountDTO toAmountDTO(ExchangeRate exchangeRate, int a
         dto.setSourceCurrency(exchangeRate.getSourceCurrency());
         dto.setTargetCurrency(exchangeRate.getTargetCurrency());
         dto.setProviderName(exchangeRate.getProvider().getName());
-        dto.setRate(exchangeRate.getRate());
+        dto.setRate(exchangeRate.getRate().setScale(4,RoundingMode.DOWN));
         dto.setAmount(ExchangeRateUtil.calculateAmount(exchangeRate.getRate(), amount).setScale(2,RoundingMode.DOWN));
         dto.setTimestamp(exchangeRate.getTimestamp().toString());
         return dto;
