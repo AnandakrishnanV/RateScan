@@ -18,7 +18,9 @@ const CurrencyComponent = () => {
         data.amount,
       )
       console.log(result)
-      navigate('/exchange-rates', {state: {exchangeRates: result}})
+      var catResult = result.concat(result)
+      catResult = catResult.concat(catResult)
+      navigate('/exchange-rates', {state: {exchangeRates: catResult}})
     } catch (error) {
       console.error('API call failed:', error)
     }
