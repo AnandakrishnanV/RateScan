@@ -4,7 +4,7 @@ export const apiClient = axios.create({
     baseURL: "http://localhost:8080",
 })
 
-export const fetchExchangeRate =async (sourceCurrency:String, targetCurrency: string, amount: number) => {
+export const fetchExchangeRate =async (sourceCurrency:String, targetCurrency: string) => {
    try {
     const response = await apiClient.get('/api/v1/rates', {
         params: {
@@ -19,3 +19,20 @@ export const fetchExchangeRate =async (sourceCurrency:String, targetCurrency: st
     throw error;
    }
 }
+
+export const fetchExchangeRateWithAmount =async (sourceCurrency:String, targetCurrency: string, amount: number) => {
+    try {
+     const response = await apiClient.get('/api/v1/rates/convert', {
+         params: {
+             sourceCurrency,
+             targetCurrency,
+             amount
+         }
+     })
+     return response.data
+    }
+    catch (error) {
+     console.error();
+     throw error;
+    }
+ }

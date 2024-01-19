@@ -1,21 +1,24 @@
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select'
+import { fetchExchangeRateWithAmount } from '../../services/apiService'
 import './CurrencyComponent.scss'
-import { fetchExchangeRate } from '../../services/apiService'
+import { useNavigate } from 'react-router-dom'
 
 const CurrencyComponent = () => {
   const { control, handleSubmit, register } = useForm()
+  const navigate = useNavigate()
 
   const onSubmit = async (data: any) => {
     console.log(data)
 
     try {
-      const result = await fetchExchangeRate(
+      const result = await fetchExchangeRateWithAmount(
         data.sourceCurrency.value,
         data.targetCurrency.value,
         data.amount,
       )
       console.log(result)
+      navigate('/exchange-rates', {state: {exchangeRates: result}})
     } catch (error) {
       console.error('API call failed:', error)
     }
