@@ -15,6 +15,7 @@ import com.ak.ratecompare.exchangerate.model.ExchangeRate;
 import com.ak.ratecompare.exchangerate.model.ExchangeRateAmountDTO;
 import com.ak.ratecompare.exchangerate.model.ExchangeRateDTO;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
+import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuoteResponseDTO;
 import com.ak.ratecompare.exchangerate.service.CurrencyExchangeAggregatorService;
 import com.ak.ratecompare.exchangerate.service.ExchangeRateQuoteAggregatorService;
 import com.ak.ratecompare.exchangerate.util.ExchangeRateMapper;
@@ -63,24 +64,17 @@ public class ExchangeRateController {
 	}
 	
 	@GetMapping("/quotes")
-	public ResponseEntity<List<ExchangeRateQuote>> getExchangeRateQuotes(@RequestParam String sourceCurrency,
+	public ResponseEntity<List<ExchangeRateQuoteResponseDTO>> getExchangeRateQuotes(@RequestParam String sourceCurrency,
 			@RequestParam String targetCurrency, @RequestParam(required = false) Double sourceAmount, @RequestParam(required = false) Double targetAmount) {
 
 		List<ExchangeRateQuote> exchangeRates = quoteAggregatorService.getExchangeRateFromAllProviders(sourceCurrency,
 				targetCurrency, sourceAmount, targetAmount);
 		
-		System.out.println(exchangeRates.get(0).getExchangeQuoteOptions().toString());
+		List<ExchangeRateQuoteResponseDTO> quoteDTO = exchangeRates.stream()
+				.map((quote) -> ExchangeRateMapper.toQuoteResponseDTO(quote))
+				.collect(Collectors.toList());
 		
-		
-		
-		try {
-			String json = mapper.writeValueAsString(exchangeRates);
-			System.out.println(json);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(quoteDTO);
 	}
 	
 //	@GetMapping --> Next Step

@@ -92,6 +92,10 @@ public class ExchangeRateQuote {
 	private void prepareCurrencyPair() {
 		this.currencyPair = sourceCurrency + "_" + targetCurrency;
 	}
+	
+	public Long getId() {
+		return id;
+	}
 
 	public String getSourceCurrency() {
 		return sourceCurrency;

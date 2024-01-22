@@ -101,7 +101,7 @@ public class ExchangeRateQuoteResponseDTO {
 	public String toString() {
 		return "ExchangeRateQuoteResponseDTO [id=" + id + ", sourceCurrency=" + sourceCurrency + ", targetCurrency="
 				+ targetCurrency + ", providerName=" + providerName + ", rate=" + rate + ", rateTimestamp="
-				+ rateTimestamp + ", expirationTime=" + expirationTime + ", paymentOptions=" + paymentOptions + "]";
+				+ rateTimestamp + ", expirationTime=" + expirationTime + ", paymentOptions=" + this.paymentOptions.toString() + "]";
 	}
 
 }
