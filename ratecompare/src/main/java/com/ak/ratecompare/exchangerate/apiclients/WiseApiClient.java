@@ -20,7 +20,7 @@ import com.ak.ratecompare.exchangerate.repository.ProviderRepository;
 
 import reactor.core.publisher.Mono;
 
-//@Component
+@Component
 public class WiseApiClient implements ExchangeRateApiClient{
 	
 	@Autowired

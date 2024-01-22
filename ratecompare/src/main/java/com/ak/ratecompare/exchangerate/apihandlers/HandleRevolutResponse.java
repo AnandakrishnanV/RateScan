@@ -1,9 +1,8 @@
 package com.ak.ratecompare.exchangerate.apihandlers;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class HandleRevolutResponse {
 		ExchangeRateQuote exchangeRateQuote = new ExchangeRateQuote();
 		exchangeRateQuote.setSourceCurrency(responseJson.get("sender").get("currency").asText());
 		exchangeRateQuote.setTargetCurrency(responseJson.get("recipient").get("currency").asText());
-		exchangeRateQuote.setRate(new BigDecimal(responseJson.get("rate").get("rate").asText()));
+		exchangeRateQuote.setRate(new BigDecimal(responseJson.get("rate").get("rate").asText()).setScale(4, RoundingMode.HALF_DOWN));
 		exchangeRateQuote.setRateTimestamp(LocalDateParseUtil.convertUnixTimeStringToLocalDateTime(responseJson.get("rate").get("timestamp").asText()));
 		exchangeRateQuote.setExpirationTime(LocalDateTime.now().plusMinutes(1));		// Arbitrarty, Its instant rates
 		exchangeRateQuote.setProvider(revolutProvider);
