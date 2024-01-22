@@ -39,7 +39,7 @@ public class FetchRevolutQuoteFromApi {
 		String url = UriComponentsBuilder.fromUriString(revolutProvider.getApiUrl())
         		.path("/exchange/quote")
         		.queryParam("amount", sourceAmount.intValue()) // MUST BE int for somereason
-        		.queryParam("country", "IN") // Hard coding, since we only want rate
+        		.queryParam("country", "GB") // Hard coding, since we only want rate
         		.queryParam("fromCurrency", sourceCurrency)
         		.queryParam("isRecipientAmount", false)	// Hard coding, since we only want rate
         		.queryParam("toCurrency", targetCurrency)
