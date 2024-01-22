@@ -1,5 +1,6 @@
 package com.ak.ratecompare.exchangerate.dataloader;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,8 +40,8 @@ public class ProviderDataLoader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		List<Provider> providers = Arrays
-				.asList(new Provider("Wise", wiseApiUrl, wiseApiKey, null, null),
-						new Provider("Revolut", revolutApiUrl, revolutApiKey, null, null));
+				.asList(new Provider("Wise", wiseApiUrl, wiseApiKey, null, LocalDateTime.now()),
+						new Provider("Revolut", revolutApiUrl, revolutApiKey, null, LocalDateTime.now()));
 		
 		for (Provider provider: providers) {
 			providerRepository.findById(provider.getName()).ifPresentOrElse(existingProvider -> updateProvider(existingProvider, provider), () -> providerRepository.save(provider));

@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ak.ratecompare.exchangerate.model.ExchangeRate;
 import com.ak.ratecompare.exchangerate.model.ExchangeRateAmountDTO;
 import com.ak.ratecompare.exchangerate.model.ExchangeRateDTO;
+import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
 import com.ak.ratecompare.exchangerate.service.CurrencyExchangeAggregatorService;
+import com.ak.ratecompare.exchangerate.service.ExchangeRateQuoteAggregatorService;
 import com.ak.ratecompare.exchangerate.util.ExchangeRateMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("api/v1/rates")
@@ -25,6 +29,11 @@ public class ExchangeRateController {
 	@Autowired
 	private CurrencyExchangeAggregatorService aggregatorService;
 
+	@Autowired
+	private ExchangeRateQuoteAggregatorService quoteAggregatorService;
+	
+	ObjectMapper mapper = new ObjectMapper();
+	
 	@GetMapping
 	public ResponseEntity<List<ExchangeRateDTO>> getExchangeRates(@RequestParam String sourceCurrency,
 			@RequestParam String targetCurrency) {
@@ -51,6 +60,27 @@ public class ExchangeRateController {
 				.collect(Collectors.toList());
 		
 		return ResponseEntity.ok(dtoList);
+	}
+	
+	@GetMapping("/quotes")
+	public ResponseEntity<List<ExchangeRateQuote>> getExchangeRateQuotes(@RequestParam String sourceCurrency,
+			@RequestParam String targetCurrency, @RequestParam(required = false) Double sourceAmount, @RequestParam(required = false) Double targetAmount) {
+
+		List<ExchangeRateQuote> exchangeRates = quoteAggregatorService.getExchangeRateFromAllProviders(sourceCurrency,
+				targetCurrency, sourceAmount, targetAmount);
+		
+		System.out.println(exchangeRates.get(0).getExchangeQuoteOptions().toString());
+		
+		
+		
+		try {
+			String json = mapper.writeValueAsString(exchangeRates);
+			System.out.println(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.ok(null);
 	}
 	
 //	@GetMapping --> Next Step
