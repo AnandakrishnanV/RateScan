@@ -10,6 +10,7 @@ import com.ak.ratecompare.exchangerate.model.Provider;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.QuoteRequestDTO;
 import com.ak.ratecompare.exchangerate.repository.ProviderRepository;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import reactor.core.publisher.Mono;
 
@@ -21,8 +22,11 @@ public class FetchWiseQuoteFromApi {
 
 	@Autowired
 	private ProviderRepository providerRepository;
+	
+	@Autowired
+	private HandleWiseResponse handleWiseResponse;
 
-	public Mono<ExchangeRateQuote> fetchQuote(String sourceCurrency, String targetCurrency, Double sourceAmout,
+	public ExchangeRateQuote fetchQuote(String sourceCurrency, String targetCurrency, Double sourceAmout,
 			Double targetAmount) {
 
 		WebClient webClient = webClientBuilder.build();
@@ -33,14 +37,14 @@ public class FetchWiseQuoteFromApi {
 
 		String url = wiseProvider.getApiUrl() + "/v3/quotes";
 		QuoteRequestDTO request = new QuoteRequestDTO(sourceCurrency, targetCurrency, sourceAmout, targetAmount);
-		
-		return webClient.post()
-				.uri(url)
+
+		Mono<JsonNode> responseMono = webClient.post().uri(url)
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + wiseProvider.getApiKey())
-				.contentType(MediaType.APPLICATION_JSON)
-				.bodyValue(request)
-                .retrieve()
-                .bodyToMono(ExchangeRateQuote.class);
+				.contentType(MediaType.APPLICATION_JSON).bodyValue(request).retrieve().bodyToMono(JsonNode.class);
+
+		JsonNode responseJson = responseMono.block();
+		
+		return handleWiseResponse.handleApiResponse(responseJson, wiseProvider);
 
 	}
 }
