@@ -1,6 +1,6 @@
 import './ExchangeRateCard.scss'
 import providerLogos from '../../services/providerLogos'
-import { timeAgo } from '../../services/utilService'
+import { timeAgo } from '../../services/dateUtilService'
 
 const ExchangeRateCard = ({ rateData }) => {
   const logoUrl = providerLogos[rateData.providerName]

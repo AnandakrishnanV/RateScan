@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import HeroComponent from './components/Hero/HeroComponent'
 import ExchangeRateTable from './components/ExchangeRate/ExchangeRateTable'
+import QuotesTable from './components/Quotes/QuotesTable'
 
 const App = () => {
   return (
@@ -27,6 +28,14 @@ const App = () => {
               element={
                 <div>
                   <ExchangeRateTable />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/quotes"
+              element={
+                <div>
+                  <QuotesTable />
                 </div>
               }
             ></Route>
