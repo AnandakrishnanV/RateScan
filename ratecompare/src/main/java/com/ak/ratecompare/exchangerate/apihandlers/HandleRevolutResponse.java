@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.ak.ratecompare.exchangerate.model.Provider;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeQuoteOptions;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
+import com.ak.ratecompare.exchangerate.util.LocalDateParseUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @Service
@@ -24,7 +25,7 @@ public class HandleRevolutResponse {
 		exchangeRateQuote.setSourceCurrency(responseJson.get("sender").get("currency").asText());
 		exchangeRateQuote.setTargetCurrency(responseJson.get("recipient").get("currency").asText());
 		exchangeRateQuote.setRate(new BigDecimal(responseJson.get("rate").get("rate").asText()));
-		exchangeRateQuote.setRateTimestamp(convertTimeToLocalDateTime(responseJson.get("rate").get("timestamp").asText()));
+		exchangeRateQuote.setRateTimestamp(LocalDateParseUtil.convertUnixTimeStringToLocalDateTime(responseJson.get("rate").get("timestamp").asText()));
 		exchangeRateQuote.setExpirationTime(LocalDateTime.now().plusMinutes(1));		// Arbitrarty, Its instant rates
 		exchangeRateQuote.setProvider(revolutProvider);
 		
@@ -47,9 +48,7 @@ public class HandleRevolutResponse {
 		
 	}
 	
-	public LocalDateTime convertTimeToLocalDateTime(String timestamp) {
-		return LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(timestamp)), ZoneId.systemDefault());
-	}
+	
 
 }
 
