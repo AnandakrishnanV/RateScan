@@ -1,31 +1,36 @@
 package com.ak.ratecompare.exchangerate.model.exchangeRateQuote;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ExchangeRateQuoteResponseDTO {
-	
+
 	private Long id;
 	private String sourceCurrency;
-    private String targetCurrency;
-    private String providerName;
-    private BigDecimal rate;
-    private BigDecimal amount;
-    private String timestamp;
-    
-    public ExchangeRateQuoteResponseDTO () {
-    	
-    }
-    
-	public ExchangeRateQuoteResponseDTO(Long id, String sourceCurrency, String targetCurrency, String providerName, BigDecimal rate, BigDecimal amount,
-			String timestamp) {
+	private String targetCurrency;
+	private String providerName;
+	private BigDecimal rate;
+	private String rateTimestamp;
+	private String expirationTime;
+
+	private List<ExchangeRateQuoteOptionsResponseDTO> paymentOptions;
+
+	public ExchangeRateQuoteResponseDTO() {
+
+	}
+
+	public ExchangeRateQuoteResponseDTO(Long id, String sourceCurrency, String targetCurrency, String providerName,
+			BigDecimal rate, String rateTimestamp, String expirationTime,
+			List<ExchangeRateQuoteOptionsResponseDTO> paymentOptions) {
 		super();
 		this.id = id;
 		this.sourceCurrency = sourceCurrency;
 		this.targetCurrency = targetCurrency;
 		this.providerName = providerName;
 		this.rate = rate;
-		this.amount = amount;
-		this.timestamp = timestamp;
+		this.rateTimestamp = rateTimestamp;
+		this.expirationTime = expirationTime;
+		this.paymentOptions = paymentOptions;
 	}
 
 	public Long getId() {
@@ -67,27 +72,36 @@ public class ExchangeRateQuoteResponseDTO {
 	public void setRate(BigDecimal rate) {
 		this.rate = rate;
 	}
-	
-	public BigDecimal getAmount() {
-		return amount;
+
+	public String getRateTimestamp() {
+		return rateTimestamp;
 	}
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+	public void setRateTimestamp(String rateTimestamp) {
+		this.rateTimestamp = rateTimestamp;
 	}
 
-	public String getTimestamp() {
-		return timestamp;
+	public String getExpirationTime() {
+		return expirationTime;
 	}
 
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setExpirationTime(String expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
+	public List<ExchangeRateQuoteOptionsResponseDTO> getPaymentOptions() {
+		return paymentOptions;
+	}
+
+	public void setPaymentOptions(List<ExchangeRateQuoteOptionsResponseDTO> paymentOptions) {
+		this.paymentOptions = paymentOptions;
 	}
 
 	@Override
 	public String toString() {
-		return "ExchangeRateAmountDTO [id=" + id + ", sourceCurrency=" + sourceCurrency + ", targetCurrency="
-				+ targetCurrency + ", providerName=" + providerName + ", rate=" + rate + ", amount=" + amount
-				+ ", timestamp=" + timestamp + "]";
+		return "ExchangeRateQuoteResponseDTO [id=" + id + ", sourceCurrency=" + sourceCurrency + ", targetCurrency="
+				+ targetCurrency + ", providerName=" + providerName + ", rate=" + rate + ", rateTimestamp="
+				+ rateTimestamp + ", expirationTime=" + expirationTime + ", paymentOptions=" + paymentOptions + "]";
 	}
+
 }
