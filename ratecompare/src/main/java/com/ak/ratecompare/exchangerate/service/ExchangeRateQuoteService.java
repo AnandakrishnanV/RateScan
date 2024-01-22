@@ -34,6 +34,8 @@ public class ExchangeRateQuoteService {
 																										
 	public ExchangeRateQuote getQuotes(String sourceCurrency, String targetCurrency, Double sourceAmount, Double targetAmount, String providerName) {
 		
+		System.out.println(providerName);
+		
 		Provider provider = providerRepository.findById(providerName).orElseThrow(() -> new RuntimeException("Provider not found"));
         
         Optional<ExchangeRate> cachedRate = exchangeRateRepository
