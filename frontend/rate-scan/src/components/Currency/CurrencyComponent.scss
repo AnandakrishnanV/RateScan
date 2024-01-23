@@ -1,35 +1,46 @@
 .currency-converter-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 1.5rem; 
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
-    .form-group, .row {
-      margin-bottom: 1.5rem; 
-  
-      label {
-        font-size: 1.5rem; 
-      }
-  
-      .form-control, .form-select, .react-select__control {
-        font-size: 1.1rem; // Larger font size for inputs
-        padding: 0.75rem; // Increased padding for larger height
-        height: auto; // Adjust height as needed
-      }
-  
-      .select-container {
-        min-width: 238px; // Or any width that suits your design
-    
-        .react-select__control {
-          width: 100%;
-        }
-      }
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .form-group,
+  .row {
+    margin-bottom: 1.5rem;
+
+    label {
+      font-size: 1.5rem;
     }
-  
-    .btn-primary {
-      padding: 0.75rem 1rem; // Larger button padding
-      font-size: 1.1rem; // Larger font for the button
+
+    .form-control,
+    .form-select,
+    .react-select__control {
+      font-size: 1.1rem; 
+      padding: 0.75rem; 
+      height: auto; 
+    }
+
+    .select-container {
+      min-width: 238px; 
+
+      .react-select__control {
+        width: 100%;
+      }
     }
   }
+
+  .btn {
+    padding: 0.75rem 1rem; 
+    font-size: 1.1rem; 
+    background-color: #157a6e;
+    border-color: #157a6e;
+    padding: 0.5rem;
+    min-width: 40px;
+    &:hover {
+      background-color: darken(#157a6e, 5%);
+      border-color: darken(#157a6e, 5%);
+    }
+  }
+}

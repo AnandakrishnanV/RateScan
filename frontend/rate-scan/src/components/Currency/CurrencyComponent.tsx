@@ -136,9 +136,9 @@ const CurrencyComponent = () => {
       <button type="submit" className="btn btn-primary">
         Get Quote
       </button>
-      <button type="button" onClick={onSubmit} className="btn btn-secondary">
+      {/* <button type="button" onClick={onSubmit} className="btn btn-secondary">
       Convert
-      </button>
+      </button> */}
     </form>
   )
 }

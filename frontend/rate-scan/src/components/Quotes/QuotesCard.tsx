@@ -81,6 +81,7 @@ const QuotesCard = ({ quoteData }) => {
                     <a
                       href={quoteData.providerName}
                       className="btn btn-primary"
+                      role="button"
                     >
                       Go to {quoteData.providerName}
                     </a>

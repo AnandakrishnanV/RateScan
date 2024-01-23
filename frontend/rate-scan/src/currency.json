@@ -297,7 +297,8 @@
         "value": "EUR",
         "label": "Euro",
         "country": "European Union",
-        "countryCode": "eu"
+        "countryCode": "eu",
+        "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAANUlEQVRIS+3SsQkAAAwCQd1/aUf4yu5TS4TD5nw9/48FKCyRRCiAAVckEQpgwBVJhAIYuK9oesQAGQOvmYAAAAAASUVORK5CYII="
     },
     {
         "value": "FJD",

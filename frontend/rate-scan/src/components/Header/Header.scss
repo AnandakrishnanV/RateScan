@@ -1,26 +1,26 @@
 
 .header {
-  background-color: #e9f7f0; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: adds depth
-
+  // background-color: #e9f7f0; 
+  background-color: #157a6e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   .container {
     .logo {
-      max-width: 50px; // Logo size
+      max-width: 50px; 
       margin-right: 1rem;
     }
 
     .site-name {
-      color: #1e3932; // Off-white text for contrast
+      color: #D19C1D; 
       margin: 0;
-      font-size: 2rem; // Example size, adjust as needed
+      font-size: 2rem; 
       font-weight: 700;
     }
   
     .nav-link {
-      color: #F29E4C; // Off-white text for links
+      color: #D19C1D; 
       font-weight: 600;
       &:hover {
-        color: #a5d6a7; // Light green for hover state
+        color: #a5d6a7; 
       }
     }
   }

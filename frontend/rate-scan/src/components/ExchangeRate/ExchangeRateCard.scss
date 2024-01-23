@@ -1,37 +1,36 @@
 .exchange-rate-card {
-  background-color: #fff; // White background for the card
-  border-radius: 0.5rem; // Rounded corners
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow
-  font-size: 1rem; // Base font size, adjust as needed
-  margin-bottom: 1rem; // Space between cards
+  background-color: #fff; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  font-size: 1rem; 
+  margin-bottom: 1rem; 
   margin: 0 auto;
   max-width: 960px;
 
   .card-body {
-    padding: 2rem; // Padding inside the card
+    padding: 2rem; 
   }
 
   .rate-logo img {
-    width: 100px; // Set the width of the logo
-    height: auto; // Maintain aspect ratio
-    // Add any additional styling as needed
+    width: 100px; 
+    height: auto; 
   }
 
   .rate-score {
     .badge {
-      font-size: 0.9rem; // Smaller font size for the badge
-      border-radius: 50%; // Circular badge
-      width: 2.5rem; // Fixed width for the badge
-      height: 2.5rem; // Fixed height for the badge
-      display: flex; // To center content
-      align-items: center; // Center content vertically
-      justify-content: center; // Center content horizontally
-      color: #fff; // White text for the badge
+      font-size: 0.9rem; 
+      border-radius: 50%; 
+      width: 2.5rem; 
+      height: 2.5rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: #fff; 
     }
 
     .provider-name {
-      margin-left: 0.5rem; // Space between badge and provider name
-      font-weight: bold; // Bold font for the provider name
+      margin-left: 0.5rem; 
+      font-weight: bold; 
     }
   }
 
@@ -41,11 +40,11 @@
     .exchange-rate {
 
       .exchange-rate-label {
-        color: #6c757d; // Light shade of grey
+        color: #6c757d; 
       }
 
       .exchange-rate-value {
-        font-weight: bold; // Bolder text for the value
+        font-weight: bold; 
       }
     }
 
@@ -58,22 +57,22 @@
     }
 
     .text-success {
-      color: #28a745; // Bootstrap success color, adjust as needed
+      color: #28a745; 
     }
   }
 
   .recipient-gets {
-    font-size: 1.25rem; // Larger font size for recipient gets amount
-    font-weight: bold; // Bold font for emphasis
-    color: #333; // Darker text for better readability
+    font-size: 1.25rem; 
+    font-weight: bold; 
+    color: #333; 
   }
 
   .btn {
-    background-color: #ff6f00; // Orange background for the button, adjust as needed
-    border-color: #ff6f00; // Orange border for the button
+    background-color: #ff6f00; 
+    border-color: #ff6f00; 
     &:hover {
-      background-color: darken(#ff6f00, 5%); // Darken the button on hover
-      border-color: darken(#ff6f00, 5%); // Darken the border on hover
+      background-color: darken(#ff6f00, 5%); 
+      border-color: darken(#ff6f00, 5%); 
     }
   }
 }
