@@ -17,30 +17,33 @@
     .form-control,
     .form-select,
     .react-select__control {
-      font-size: 1.1rem; 
-      padding: 0.75rem; 
-      height: auto; 
+      font-size: 1.1rem;
+      padding: 0.75rem;
+      height: auto;
     }
 
     .select-container {
-      min-width: 238px; 
+      min-width: 238px;
 
       .react-select__control {
         width: 100%;
       }
     }
   }
-
-  .btn {
-    padding: 0.75rem 1rem; 
-    font-size: 1.1rem; 
-    background-color: #157a6e;
-    border-color: #157a6e;
-    padding: 0.5rem;
-    min-width: 40px;
-    &:hover {
-      background-color: darken(#157a6e, 5%);
-      border-color: darken(#157a6e, 5%);
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    .btn {
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      background-color: #157a6e;
+      border-color: #157a6e;
+      padding: 0.5rem;
+      min-width: 40px;
+      &:hover {
+        background-color: darken(#157a6e, 5%);
+        border-color: darken(#157a6e, 5%);
+      }
     }
   }
 }

@@ -7,17 +7,17 @@ const Footer = () => {
         <div className="container">
           <div className="footer-content">
             <div className="logo-container">
-              {/* Replace with your logo */}
+              {/* Replace  logo */}
               <img src="/path-to-logo.svg" alt="Company Logo" />
             </div>
             <div className="footer-links">
-              {/* Replace with your actual links */}
+              {/* Replace  links */}
               <a href="/about">About Us</a>
               <a href="/services">Services</a>
               <a href="/contact">Contact</a>
             </div>
             <div className="footer-info">
-              {/* Replace with your company info */}
+              {/* Replace info */}
               <p>&copy; 2024 Company Name. All rights reserved.</p>
             </div>
           </div>

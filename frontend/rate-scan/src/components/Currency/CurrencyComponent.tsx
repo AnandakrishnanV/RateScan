@@ -2,7 +2,10 @@ import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import Select, { ControlProps, components } from 'react-select'
 import currencyOpts from '../../currency.json'
-import { fetchExchangeRateWithAmount, fetchQuotes } from '../../services/apiService'
+import {
+  fetchExchangeRateWithAmount,
+  fetchQuotes,
+} from '../../services/apiService'
 import './CurrencyComponent.scss'
 
 const CurrencyComponent = () => {
@@ -19,16 +22,14 @@ const CurrencyComponent = () => {
         data.amount,
       )
       console.log(result)
-      var catResult = result.concat(result)
-      catResult = catResult.concat(catResult)
-      navigate('/exchange-rates', { state: { exchangeRates: catResult } })
+      navigate('/exchange-rates', { state: { exchangeRates: result } })
     } catch (error) {
       console.error('API call failed:', error)
     }
   }
 
   const onQuote = async (data: any) => {
-    console.log("Quote", data);
+    console.log('Quote', data)
 
     try {
       const result = await fetchQuotes(
@@ -42,7 +43,7 @@ const CurrencyComponent = () => {
     } catch (error) {
       console.error('API call failed:', error)
     }
-};
+  }
 
   const customOption = (props: any) => {
     return (
@@ -132,10 +133,11 @@ const CurrencyComponent = () => {
           placeholder="Enter amount"
         />
       </div>
-
-      <button type="submit" className="btn btn-primary">
-        Get Quote
-      </button>
+      <div className="button-container">
+        <button type="submit" className="btn btn-primary">
+          Get Quote
+        </button>
+      </div>
       {/* <button type="button" onClick={onSubmit} className="btn btn-secondary">
       Convert
       </button> */}

@@ -1,15 +1,15 @@
 .footer {
-    background-color: #157a6e; // Dark background
-    color: #D19C1D; // White text color
+    background-color: #157a6e; 
+    color: #D19C1D; 
     padding: 1rem 0;
   
     .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap; // Ensure responsiveness
+      flex-wrap: wrap; 
   
-      @media (max-width: 576px) { // Adjust breakpoint as needed
+      @media (max-width: 576px) { 
         flex-direction: column;
         text-align: center;
       }
@@ -17,7 +17,7 @@
   
     .logo-container {
       img {
-        max-width: 150px; // Adjust logo size as needed
+        max-width: 150px; 
       }
     }
   
@@ -39,7 +39,7 @@
   
     .footer-info {
       p {
-        margin: 0; // Remove default margin
+        margin: 0; 
       }
     }
   }

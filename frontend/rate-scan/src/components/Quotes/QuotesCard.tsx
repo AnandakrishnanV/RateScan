@@ -1,5 +1,6 @@
 import './QuotesCard.scss'
 import providerLogos from '../../services/providerLogos'
+import currencySymbols from '../../Common-Currency.json'
 import { timeAgo, timeLeft, timeLeftDays } from '../../services/dateUtilService'
 import { formatStringToLanguage } from '../../services/stringUtilService'
 
@@ -27,7 +28,8 @@ const QuotesCard = ({ quoteData }) => {
                         Exchange rate:{' '}
                       </span>
                       <span className="exchange-rate-value">
-                        {quoteData.rate} {quoteData.targetCurrency}
+                        {currencySymbols[quoteData.targetCurrency].symbol}
+                        {quoteData.rate}
                       </span>
                     </div>
                     <div className="rate-obtained">
@@ -66,13 +68,14 @@ const QuotesCard = ({ quoteData }) => {
               <div className="col amount-col align-self-center">
                 <div className="row">
                   <span className="recipient-gets">
-                    {quoteData.paymentOptions[0].targetAmount}{' '}
+                    {quoteData.paymentOptions[0].targetAmount} {' '}
                     {quoteData.targetCurrency}
                   </span>
                   <div className="fee">
                     <span className="fee-label">Fees: </span>
                     <span className="fee-value">
-                      {quoteData.paymentOptions[0].fee}
+                      {quoteData.paymentOptions[0].fee} {' '}
+                      {quoteData.sourceCurrency}
                     </span>
                   </div>
                 </div>
