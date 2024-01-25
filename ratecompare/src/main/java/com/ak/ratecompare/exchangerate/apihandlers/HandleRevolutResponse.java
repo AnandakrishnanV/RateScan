@@ -25,7 +25,7 @@ public class HandleRevolutResponse {
 		exchangeRateQuote.setTargetCurrency(responseJson.get("recipient").get("currency").asText());
 		exchangeRateQuote.setRate(new BigDecimal(responseJson.get("rate").get("rate").asText()).setScale(4, RoundingMode.HALF_DOWN));
 		exchangeRateQuote.setRateTimestamp(LocalDateParseUtil.convertUnixTimeStringToLocalDateTime(responseJson.get("rate").get("timestamp").asText()));
-		exchangeRateQuote.setExpirationTime(LocalDateTime.now().plusMinutes(1));		// Arbitrarty, Its instant rates
+		exchangeRateQuote.setExpirationTime(LocalDateTime.now().plusMinutes(1));		// Arbitrarty, It's almost instant with App to app (For now)
 		exchangeRateQuote.setProvider(revolutProvider);
 		
 		

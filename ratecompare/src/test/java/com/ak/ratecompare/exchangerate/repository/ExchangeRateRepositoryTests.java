@@ -43,6 +43,15 @@ public class ExchangeRateRepositoryTests {
     private CurrencyExchangeService currencyExchangeService;
 	
 	@Test
+	public void createProviderEntity() {
+	    Provider provider = new Provider("Wise", "https://api.wise.com", "wiseApiKey", null, null);
+
+	    assertNotNull(provider);
+	    assertEquals("Wise", provider.getName());
+	    assertEquals("https://api.wise.com", provider.getApiUrl());
+	}
+	
+	@Test
 	public void createExchangeRateEntity() {
 	    Provider provider = new Provider("TestProvider", "http://test.com", "testKey", null, null);
 	    ExchangeRate rate = new ExchangeRate("USD", "EUR", provider, BigDecimal.valueOf(1.1), LocalDateTime.now());
@@ -53,14 +62,7 @@ public class ExchangeRateRepositoryTests {
 	    assertEquals(BigDecimal.valueOf(1.1), rate.getRate());
 	}
 	
-	@Test
-	public void createProviderEntity() {
-	    Provider provider = new Provider("Wise", "https://api.wise.com", "wiseApiKey", null, null);
-
-	    assertNotNull(provider);
-	    assertEquals("Wise", provider.getName());
-	    assertEquals("https://api.wise.com", provider.getApiUrl());
-	}
+	
 
 	// Must test JPAs
 	

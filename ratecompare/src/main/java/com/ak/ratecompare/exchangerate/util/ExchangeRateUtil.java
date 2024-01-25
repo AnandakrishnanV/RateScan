@@ -13,7 +13,7 @@ public class ExchangeRateUtil {
 		return rate.multiply(BigDecimal.valueOf(amount));
 	}
 	
-	public LocalDateTime getFormattedTimeToLocalDateTime(String date) {
+	public static LocalDateTime getFormattedTimeToLocalDateTime(String date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
 		OffsetDateTime odt = OffsetDateTime.parse(date, formatter);
 		return odt.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
