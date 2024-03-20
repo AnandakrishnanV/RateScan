@@ -1,8 +1,7 @@
-import './MainTagline.scss';
 
 const MainTagline = () => {
     return (
-        <h1 className="main-tagline">Compare Rates</h1>
+        <h1 className="main-tagline">Maximise <span className="text-accent-primary">Your Currency</span> with Every Exchange</h1>
     )
 }
 

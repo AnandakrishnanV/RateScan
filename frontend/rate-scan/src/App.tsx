@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.scss'
+import './colors.css'
 import CurrencyComponent from './components/Currency/CurrencyComponent'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'

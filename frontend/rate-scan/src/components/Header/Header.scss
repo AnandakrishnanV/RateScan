@@ -1,24 +1,29 @@
 
 .header {
   // background-color: #e9f7f0; 
-  background-color: #157a6e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   .container {
     .logo {
-      max-width: 50px; 
+      max-width: 130px; 
       margin-right: 1rem;
     }
 
     .site-name {
-      color: #D19C1D; 
+      color: var(--main-font-color); 
       margin: 0;
       font-size: 2rem; 
       font-weight: 700;
+      font-family: var(--main-font);
+
+      .site-name-scan {
+        color: var(--green-primary);
+      }
     }
   
     .nav-link {
-      color: #D19C1D; 
+      color: var(--green-primary); 
       font-weight: 600;
+      font-size: 1.1rem; 
       &:hover {
         color: #a5d6a7; 
       }
