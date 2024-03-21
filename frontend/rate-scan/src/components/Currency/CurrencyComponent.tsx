@@ -7,10 +7,13 @@ import {
   fetchQuotes,
 } from '../../services/apiService'
 import './CurrencyComponent.scss'
+import { useState } from 'react'
 
 const CurrencyComponent = () => {
   const { control, handleSubmit, register } = useForm()
   const navigate = useNavigate()
+
+  const [isHoveredAmount, setIsHoveredAmount] = useState(false)
 
   const onSubmit = async (data: any) => {
     console.log(data)
@@ -70,7 +73,7 @@ const CurrencyComponent = () => {
           <img
             src={value.icon}
             alt={value.label}
-            style={{ width: '20px', height: '20px', marginLeft: '6px' }}
+            style={{ width: '20px', height: '20px', marginLeft: '30px' }}
           />
         )}
         {props.children}
@@ -78,7 +81,49 @@ const CurrencyComponent = () => {
     )
   }
 
-  const customStyles = {}
+  const customStyles = {
+    control: (provided: any, state: any) => ({
+      ...provided,
+      height: '60px',
+      width: '320px',
+      fontFamily: 'Raleway',
+      fontWeight: 'bold',
+      fontSize: '18px',
+      borderColor: '#b7d4a2',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      boxShadow: state.isFocused ? 0 : 0,
+      '&:hover': {
+        borderColor: '#99c877',
+      },
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      backgroundColor: 'white',
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      height: 'auto',
+      padding: '15px',
+      fontFamily: 'Raleway',
+      fontWeight: 'bold',
+      fontSize: '18px',
+      color: 'black',
+      backgroundColor: state.isFocused ? '#d8efc8' : 'white',
+      borderBottom: '1px solid #d8efc8',
+      '&:hover, &:focus': {
+        backgroundColor: '#d8efc8',
+        borderRadius: '4px',
+      },
+    }),
+    menuList: (provided: any) => ({
+      ...provided,
+      padding: '1rem',
+    }),
+    container: (provided: any) => ({
+      ...provided,
+    }),
+  }
 
   return (
     <form className="currency-converter-form" onSubmit={handleSubmit(onQuote)}>
@@ -125,19 +170,38 @@ const CurrencyComponent = () => {
         <label htmlFor="amount" className="form-label">
           Amount:
         </label>
-        <input
-          type="number"
-          className="form-control"
-          id="amount"
-          {...register('amount', { required: true })}
-          placeholder="Enter amount"
-        />
+        <div className='amount-and-button-container'>
+          <div className="amount-container">
+            <input
+              type="number"
+              className="form-control amount-input"
+              id="amount"
+              {...register('amount', { required: true })}
+              placeholder="Enter amount"
+              style={{
+                height: '80px',
+                width: '400px',
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                fontSize: '22px',
+                fontWeight: '700',
+                fontFamily: 'Cabin, sans-serif',
+                borderColor: isHoveredAmount ? '#99c877' : '#b7d4a2',
+                boxShadow: 'none',
+                outline: 'none',
+              }}
+              onMouseEnter={() => setIsHoveredAmount(true)}
+              onMouseLeave={() => setIsHoveredAmount(false)}
+            />
+          </div>
+          <div className="button-container">
+            <button type="submit" className="btn btn-primary">
+              Compare
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="button-container">
-        <button type="submit" className="btn btn-primary">
-          Get Quote
-        </button>
-      </div>
+
       {/* <button type="button" onClick={onSubmit} className="btn btn-secondary">
       Convert
       </button> */}

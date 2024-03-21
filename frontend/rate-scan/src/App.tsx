@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 import HeroComponent from './components/Hero/HeroComponent'
 import ExchangeRateTable from './components/ExchangeRate/ExchangeRateTable'
 import QuotesTable from './components/Quotes/QuotesTable'
+import MissionComponent from './components/Mission/MissionComponent'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
                 <div>
                   <HeroComponent />
                   <CurrencyComponent />
+                  <MissionComponent />
                 </div>
               }
             ></Route>
@@ -37,6 +39,7 @@ const App = () => {
               element={
                 <div>
                   <QuotesTable />
+                  <MissionComponent />
                 </div>
               }
             ></Route>

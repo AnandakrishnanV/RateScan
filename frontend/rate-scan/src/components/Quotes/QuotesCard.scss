@@ -1,36 +1,38 @@
 .quote-card {
-  background-color: #fff; 
-  border-radius: 0.5rem; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  font-size: 1rem; 
-  margin-bottom: 1rem; 
+  
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  margin-bottom: 1rem;
   margin: 0 auto;
   max-width: 960px;
+  font-family: 'Raleway';
 
   .card-body {
-    padding: 2rem; 
+    padding: 2rem;
   }
 
   .provider-logo img {
-    width: 100px; 
-    height: auto; 
+    width: 100px;
+    height: auto;
+    
   }
 
   .rate-score {
     .badge {
-      font-size: 0.9rem; 
-      border-radius: 50%; 
-      width: 2.5rem; 
-      height: 2.5rem; 
-      display: flex; 
+      font-size: 0.9rem;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
       align-items: center;
-      justify-content: center; 
-      color: #fff; 
+      justify-content: center;
+      color: #fff;
     }
 
     .provider-name {
-      margin-left: 0.5rem; 
-      font-weight: bold; 
+      margin-left: 0.5rem;
+      font-weight: bold;
     }
   }
 
@@ -40,13 +42,26 @@
     .rate-details {
       min-width: 300px;
 
+      .fee {
+        .fee-label {
+          color: #6c757d;
+        }
+
+        .fee-value {
+          color: var(--green-accent);
+          font-family: var(--main-numerical-font);
+          font-weight: bold;
+        }
+      }
+
       .exchange-rate {
         .exchange-rate-label {
-          color: #6c757d; 
+          color: #6c757d;
         }
 
         .exchange-rate-value {
-          font-weight: bold; 
+          font-family: var(--main-numerical-font);
+          font-weight: bold;
         }
       }
 
@@ -61,59 +76,60 @@
   }
 
   .transfer-row {
+    margin-top: 3rem;
     .transfer-details {
       min-width: 300px;
 
       .transfer-time-label {
-        color: #6c757d; 
+        color: #6c757d;
       }
 
       .transfer-time-value {
-        font-weight: bold; 
+        font-family: var(--main-numerical-font);
+        font-weight: bold;
       }
 
       .payment-method {
         .payment-method-label {
-          color: #6c757d; 
+          color: #6c757d;
         }
 
         .payment-method-value {
-          font-weight: bold; 
+          font-weight: bold;
         }
       }
     }
   }
 
   .amount-col {
-    .recipient-gets {
-      font-size: 1.25rem; 
-      font-weight: bold; 
-      color: #333; 
+
+    .recipient-gets-label{
+      color: #6c757d;
     }
 
-    .fee {
-      font-size: small;
-      .fee-label {
-        color: #6c757d;
-      }
-
-      .fee-value {
-      }
+    .recipient-gets {
+      font-family: var(--main-numerical-font);
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
     }
 
     .provider-button {
-        margin-top: 2rem;
+      margin-top: 2rem;
     }
   }
 
   .btn {
-    background-color: #157a6e; 
-    border-color: #157a6e; 
-    padding: 0.5rem;
-    min-width: 40px;
+    min-width: 150px;
+
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: var(--green-primary);
+    border-color: var(--green-primary);
     &:hover {
-      background-color: darken(#157a6e, 5%); 
-      border-color: darken(#157a6e, 5%); 
+      background-color: darken(#9ed775, 5%);
+      border-color: darken(#9ed775, 5%);
     }
   }
 }

@@ -1,0 +1,45 @@
+.mission-container {
+  margin-top: 4rem;
+  padding: 5rem 2rem;
+  background-color: var(--green-card-background);
+
+  .container {
+    max-width: 1500px;
+
+    .why-us-card {
+      background-color: transparent;
+      border: none;
+      .card-body {
+        text-align: center;
+      }
+
+      .card-title {
+        font-weight: 800;
+        margin-top: 1rem;
+        font-size: 2.5rem; /* Large font size for the heading */
+        margin-bottom: 1rem; /* Ample space below the heading */
+        text-align: left;
+      }
+
+      .card-text {
+        margin-top: 4rem;
+        margin-bottom: 2rem; /* Ample space below the text */
+        font-size: 1.1rem;
+        text-align: left;
+      }
+
+      .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      img {
+        max-width: 45%;
+        height: auto;
+        margin-bottom: 1rem; /* Space below the image if there is additional content */
+      }
+    }
+  }
+}

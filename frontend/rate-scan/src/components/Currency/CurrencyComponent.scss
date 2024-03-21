@@ -1,8 +1,8 @@
 .currency-converter-form {
-  max-width: 500px;
+  max-width: 50rem;
   margin: 0 auto;
-  padding: 1.5rem;
-  background-color: #fff;
+  padding: 3.5rem;
+  background-color: #ffff;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
@@ -30,20 +30,47 @@
       }
     }
   }
-  .button-container {
+
+  .amount-and-button-container {
     display: flex;
-    justify-content: flex-end;
-    .btn {
-      padding: 0.75rem 1rem;
-      font-size: 1.1rem;
-      background-color: #157a6e;
-      border-color: #157a6e;
-      padding: 0.5rem;
-      min-width: 40px;
-      &:hover {
-        background-color: darken(#157a6e, 5%);
-        border-color: darken(#157a6e, 5%);
+    align-items: center;
+    gap: 2.4rem;
+
+    .amount-container {
+      flex: 1;
+      display: flex;
+      margin-right: 1rem;
+    }
+
+    .button-container {
+      display: flex;
+      flex: 1;
+      justify-content: flex-start;
+      font-family: var(--main-font);
+      .btn {
+        padding: 0.75rem 1rem;
+        font-size: 1.7rem;
+        font-weight: 700;
+        background-color: var(--green-primary);
+        border-color: var(--green-primary);
+        width: 220px;
+        height: 70px;
+        &:hover {
+          background-color: darken(#9ed775, 5%);
+          border-color: darken(#9ed775, 5%);
+        }
       }
+    }
+  }
+
+  @media (max-width: 600px) {
+    // Example breakpoint
+    .amount-and-button-container {
+      flex-direction: column;
+    }
+    .amount-container {
+      margin-right: 0;
+      margin-bottom: 1rem; // Adds space between the input and button when stacked
     }
   }
 }

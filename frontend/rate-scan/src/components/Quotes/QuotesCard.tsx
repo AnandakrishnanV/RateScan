@@ -15,7 +15,7 @@ const QuotesCard = ({ quoteData }) => {
         <div className="d-flex justify-content-between align-items-center">
           <div className="container">
             <div className="row">
-              <div className="col col-sm-3 logo-col">
+              <div className="col col-sm-3 logo-col d-flex align-items-center">
                 <div className="provider-logo">
                   <img src={logoUrl} alt={`${quoteData.providerName} logo`} />
                 </div>
@@ -23,20 +23,27 @@ const QuotesCard = ({ quoteData }) => {
               <div className="col col-sm-6 details-col">
                 <div className="row rate-row">
                   <div className="rate-details">
+                    <div className="fee">
+                      <span className="fee-label">Fees: </span>
+                      <span className="fee-value">
+                        {quoteData.paymentOptions[0].fee}{' '}
+                        {quoteData.sourceCurrency}
+                      </span>
+                    </div>
                     <div className="exchange-rate">
                       <span className="exchange-rate-label">
                         Exchange rate:{' '}
                       </span>
                       <span className="exchange-rate-value">
-                        {currencySymbols[quoteData.targetCurrency].symbol}
-                        {quoteData.rate}
+                        {/* {currencySymbols[quoteData.targetCurrency].symbol} */}
+                        {quoteData.rate} {quoteData.targetCurrency}
                       </span>
                     </div>
-                    <div className="rate-obtained">
+                    {/* <div className="rate-obtained">
                       <span className="rate-obtained-label">
                         Rate Expires {timeLeft(quoteData.expirationTime)}
                       </span>
-                    </div>
+                    </div> */}
                     {/* <p className="text-success">' '</p> */}
                   </div>
                 </div>
@@ -45,13 +52,11 @@ const QuotesCard = ({ quoteData }) => {
                     <span className="transfer-time-label">
                       Estimated to Arrive:{' '}
                     </span>
-                    <div>
-                      <span className="transfer-time-value">
-                        {timeLeftDays(
-                          quoteData.paymentOptions[0].estimatedDelivery,
-                        )}
-                      </span>
-                    </div>
+                    <span className="transfer-time-value">
+                      {timeLeftDays(
+                        quoteData.paymentOptions[0].estimatedDelivery,
+                      )}
+                    </span>
 
                     <div className="payment-method">
                       <span className="payment-method-label">Pay by </span>
@@ -67,17 +72,13 @@ const QuotesCard = ({ quoteData }) => {
               </div>
               <div className="col amount-col align-self-center">
                 <div className="row">
+                  <div className='recipient-gets-label'>
+                          Recipient gets:
+                  </div>
                   <span className="recipient-gets">
-                    {quoteData.paymentOptions[0].targetAmount} {' '}
+                    {quoteData.paymentOptions[0].targetAmount}{' '}
                     {quoteData.targetCurrency}
                   </span>
-                  <div className="fee">
-                    <span className="fee-label">Fees: </span>
-                    <span className="fee-value">
-                      {quoteData.paymentOptions[0].fee} {' '}
-                      {quoteData.sourceCurrency}
-                    </span>
-                  </div>
                 </div>
                 <div className="row ">
                   <div className="provider-button">
