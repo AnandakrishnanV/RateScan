@@ -2,13 +2,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.scss'
 import './colors.css'
 import CurrencyComponent from './components/Currency/CurrencyComponent'
-import Footer from './components/Footer/Footer'
+import FooterComponent from './components/Footer/FooterComponent'
 import Header from './components/Header/Header'
 import HeroComponent from './components/Hero/HeroComponent'
 import ExchangeRateTable from './components/ExchangeRate/ExchangeRateTable'
 import QuotesTable from './components/Quotes/QuotesTable'
 import MissionComponent from './components/Mission/MissionComponent'
 import HowItWorksComponent from './components/HowItWorks/HowItWorksComponent'
+import PrivacyPolicy from './components/Pages/PrivacyPolicy'
+import TermsOfService from './components/Pages/TermsOfService'
 
 const App = () => {
   return (
@@ -45,9 +47,25 @@ const App = () => {
                 </div>
               }
             ></Route>
+            <Route
+              path="/privacy"
+              element={
+                <div>
+                  <PrivacyPolicy />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/terms-of-service"
+              element={
+                <div>
+                  <TermsOfService />
+                </div>
+              }
+            ></Route>
           </Routes>
         </main>
-        <Footer />
+        <FooterComponent />
       </BrowserRouter>
     </div>
   )

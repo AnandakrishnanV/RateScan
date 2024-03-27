@@ -26,7 +26,7 @@ const HowItWorksComponent = () => {
   ]
 
   return (
-    <div className="how-it-works-container">
+    <div id="how-it-works" className="how-it-works-container">
       <div className="container">
         <h2 className="text-center">How It Works</h2>
         <div className="row">
