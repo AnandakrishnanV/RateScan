@@ -1,0 +1,75 @@
+.how-it-works-container {
+  margin-top: 4rem;
+  padding: 5rem 2rem;
+
+  .container {
+    max-width: 1500px;
+
+    h2 {
+      font-weight: 800;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin: auto;
+      width: 80%;
+
+      .col-flex {
+        background-color: var(--green-card-background);
+        padding: 1rem;
+        flex: 0 0 calc(33.333% - 2rem);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        img {
+          width: auto;
+          max-width: 70%;
+          height: auto;
+          margin-bottom: 1rem;
+        }
+
+        .step-title {
+          color: var(--main-font-color);
+          p {
+            margin-left: 2rem;
+            margin-right: 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+          }
+        }
+        .step-text {
+          text-align: center;
+          p {
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .how-it-works-container {
+      padding: 3rem 1rem;
+    }
+
+    .container h2 {
+      font-size: 1.5rem;
+    }
+
+    .container .row .col-flex {
+      flex: 0 0 100%; // Take full width on smaller screens
+      max-width: 100%; // Ensure it doesn't exceed the container width
+    }
+  }
+}

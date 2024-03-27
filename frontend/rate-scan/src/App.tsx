@@ -8,6 +8,7 @@ import HeroComponent from './components/Hero/HeroComponent'
 import ExchangeRateTable from './components/ExchangeRate/ExchangeRateTable'
 import QuotesTable from './components/Quotes/QuotesTable'
 import MissionComponent from './components/Mission/MissionComponent'
+import HowItWorksComponent from './components/HowItWorks/HowItWorksComponent'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
                   <HeroComponent />
                   <CurrencyComponent />
                   <MissionComponent />
+                  <HowItWorksComponent />
                 </div>
               }
             ></Route>
