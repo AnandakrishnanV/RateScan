@@ -1,10 +1,19 @@
 import './QuotesCard.scss'
-import providerLogos from '../../services/providerLogos'
-import currencySymbols from '../../Common-Currency.json'
-import { timeAgo, timeLeft, timeLeftDays } from '../../services/dateUtilService'
+import providerLogosJson from '../../services/providerLogos'
+// import currencySymbols from '../../Common-Currency.json'
+import { 
+  // timeAgo, timeLeft, 
+  timeLeftDays } from '../../services/dateUtilService'
 import { formatStringToLanguage } from '../../services/stringUtilService'
 
-const QuotesCard = ({ quoteData }) => {
+interface ProviderLogos {
+  [key: string]: string;
+}
+
+
+const providerLogos: ProviderLogos = providerLogosJson;
+
+const QuotesCard = ({ quoteData }: { [key: string]: any; }) => {
   const logoUrl = providerLogos[quoteData.providerName]
 
   console.log(logoUrl)

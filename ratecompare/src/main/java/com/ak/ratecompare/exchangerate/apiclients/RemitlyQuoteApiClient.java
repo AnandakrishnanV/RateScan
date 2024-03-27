@@ -3,32 +3,32 @@ package com.ak.ratecompare.exchangerate.apiclients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ak.ratecompare.exchangerate.apihandlers.FetchRemitlyQuoteFromApi;
 import com.ak.ratecompare.exchangerate.apihandlers.FetchWiseQuoteFromApi;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
 import com.ak.ratecompare.exchangerate.repository.ExchangeRateQuoteRepository;
 
 @Component
-public class WiseQuoteApiClient implements ExchangeRateQuoteApiClient {
+public class RemitlyQuoteApiClient implements ExchangeRateQuoteApiClient {
 	@Autowired
 	private ExchangeRateQuoteRepository exchangeRateQuoteRepository;
 
 	@Autowired
-	private FetchWiseQuoteFromApi fetchWiseQuoteFromApi;
+	private FetchRemitlyQuoteFromApi fetchRemitlyQuoteFromApi;
 
 	@Override
 	public String getProviderName() {
-		return "Wise";
+		return "Remitly";
 	}
 
 	@Override
 	public ExchangeRateQuote fetchRate(String sourceCurrency, String targetCurrency, Double sourceAmout,
 			Double targetAmount, String sourceCountry, String targetCountry) {
 
-		ExchangeRateQuote exchangeRateQuote = fetchWiseQuoteFromApi.fetchQuote(sourceCurrency, targetCurrency,
-				sourceAmout, targetAmount);
+		ExchangeRateQuote exchangeRateQuote = fetchRemitlyQuoteFromApi.fetchQuote(sourceCurrency, targetCurrency,
+				sourceAmout, targetAmount, sourceCountry, targetCountry);
 
 		return exchangeRateQuoteRepository.save(exchangeRateQuote);
 
 	}
-
 }

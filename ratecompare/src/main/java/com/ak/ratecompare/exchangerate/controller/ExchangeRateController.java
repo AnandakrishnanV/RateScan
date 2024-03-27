@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("api/v1/rates")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class ExchangeRateController {
 
 	@Autowired
@@ -48,6 +48,13 @@ public class ExchangeRateController {
 		
 		return ResponseEntity.ok(dtoList);
 	}
+	@GetMapping("/test")
+	public String getHearBeat() {
+
+		
+		
+		return "Alive";
+	}
 	
 	@GetMapping("/convert")
 	public ResponseEntity<List<ExchangeRateAmountDTO>> getExchangeRatesWithAmount(@RequestParam String sourceCurrency,
@@ -65,10 +72,10 @@ public class ExchangeRateController {
 	
 	@GetMapping("/quotes")
 	public ResponseEntity<List<ExchangeRateQuoteResponseDTO>> getExchangeRateQuotes(@RequestParam String sourceCurrency,
-			@RequestParam String targetCurrency, @RequestParam(required = false) Double sourceAmount, @RequestParam(required = false) Double targetAmount) {
+			@RequestParam String targetCurrency, @RequestParam(required = false) Double sourceAmount, @RequestParam(required = false) Double targetAmount, @RequestParam(required = false) String sourceCountry, @RequestParam(required = false) String targetCountry) {
 
 		List<ExchangeRateQuote> exchangeRates = quoteAggregatorService.getExchangeRateFromAllProviders(sourceCurrency,
-				targetCurrency, sourceAmount, targetAmount);
+				targetCurrency, sourceAmount, targetAmount, sourceCountry, targetCountry);
 		
 		List<ExchangeRateQuoteResponseDTO> quoteDTO = exchangeRates.stream()
 				.map((quote) -> ExchangeRateMapper.toQuoteResponseDTO(quote))

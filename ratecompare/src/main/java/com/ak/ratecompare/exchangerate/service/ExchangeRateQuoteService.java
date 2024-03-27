@@ -32,7 +32,7 @@ public class ExchangeRateQuoteService {
 	@Autowired
     private ProviderRepository providerRepository;
 																										
-	public ExchangeRateQuote getQuotes(String sourceCurrency, String targetCurrency, Double sourceAmount, Double targetAmount, String providerName) {
+	public ExchangeRateQuote getQuotes(String sourceCurrency, String targetCurrency, Double sourceAmount, Double targetAmount, String providerName, String sourceCountry, String targetCountry) {
 		
 		System.out.println(providerName);
 		
@@ -50,7 +50,7 @@ public class ExchangeRateQuoteService {
 			ExchangeRateQuoteApiClient client = clientManager.findQuoteClientByName(provider); // might need change
 			if (client != null) {
 	            // Fetch and save new rate
-				return client.fetchRate(sourceCurrency, targetCurrency, sourceAmount, targetAmount);
+				return client.fetchRate(sourceCurrency, targetCurrency, sourceAmount, targetAmount, sourceCountry, targetCountry);
 				 
 	        }
 			 // Handle the case where the client is not found

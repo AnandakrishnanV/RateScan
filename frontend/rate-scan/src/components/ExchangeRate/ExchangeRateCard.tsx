@@ -1,9 +1,16 @@
 import './ExchangeRateCard.scss'
-import providerLogos from '../../services/providerLogos'
+import providerLogosJson from '../../services/providerLogos'
 import { timeAgo } from '../../services/dateUtilService'
 
-const ExchangeRateCard = ({ rateData }) => {
-  const logoUrl = providerLogos[rateData.providerName]
+interface ProviderLogos {
+  [key: string]: string;
+}
+
+const providerLogos: ProviderLogos = providerLogosJson;
+
+const ExchangeRateCard = ({ rateData }: { [key: string]: any; }) => {
+
+  const logoUrl = providerLogos[rateData.providerName];
 
   console.log(logoUrl)
 

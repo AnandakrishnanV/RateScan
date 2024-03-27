@@ -31,6 +31,11 @@ public class ProviderDataLoader implements CommandLineRunner {
     @Value("${revolut.api.key}")
     private String revolutApiKey;
     
+    @Value("${remitly.api.url}")
+    private String remitlyApiUrl;
+    @Value("${remitly.api.key}")
+    private String remitlyApiKey;
+    
     private final ProviderRepository providerRepository;
 
 	public ProviderDataLoader(ProviderRepository providerRepository) {
@@ -41,7 +46,9 @@ public class ProviderDataLoader implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		List<Provider> providers = Arrays
 				.asList(new Provider("Wise", wiseApiUrl, wiseApiKey, null, LocalDateTime.now()),
-						new Provider("Revolut", revolutApiUrl, revolutApiKey, null, LocalDateTime.now()));
+						new Provider("Revolut", revolutApiUrl, revolutApiKey, null, LocalDateTime.now()),
+						new Provider("Remitly", remitlyApiUrl, remitlyApiKey, null, LocalDateTime.now())
+						);
 		
 		for (Provider provider: providers) {
 			providerRepository.findById(provider.getName()).ifPresentOrElse(existingProvider -> updateProvider(existingProvider, provider), () -> providerRepository.save(provider));

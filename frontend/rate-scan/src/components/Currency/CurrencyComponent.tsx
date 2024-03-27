@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import Select, { ControlProps, components } from 'react-select'
 import currencyOpts from '../../currency.json'
 import {
-  fetchExchangeRateWithAmount,
-  fetchQuotes,
+  // fetchExchangeRateWithAmount,
+  // fetchQuotes ,
+   fetchQuotesWithCountry,
 } from '../../services/apiService'
 import './CurrencyComponent.scss'
 import { useState } from 'react'
@@ -15,30 +16,32 @@ const CurrencyComponent = () => {
 
   const [isHoveredAmount, setIsHoveredAmount] = useState(false)
 
-  const onSubmit = async (data: any) => {
-    console.log(data)
+  // const onSubmit = async (data: any) => {
+  //   console.log(data)
 
-    try {
-      const result = await fetchExchangeRateWithAmount(
-        data.sourceCurrency.value,
-        data.targetCurrency.value,
-        data.amount,
-      )
-      console.log(result)
-      navigate('/exchange-rates', { state: { exchangeRates: result } })
-    } catch (error) {
-      console.error('API call failed:', error)
-    }
-  }
+  //   try {
+  //     const result = await fetchExchangeRateWithAmount(
+  //       data.sourceCurrency.value,
+  //       data.targetCurrency.value,
+  //       data.amount,
+  //     )
+  //     console.log(result)
+  //     navigate('/exchange-rates', { state: { exchangeRates: result } })
+  //   } catch (error) {
+  //     console.error('API call failed:', error)
+  //   }
+  // }
 
   const onQuote = async (data: any) => {
     console.log('Quote', data)
 
     try {
-      const result = await fetchQuotes(
+      const result = await fetchQuotesWithCountry(
         data.sourceCurrency.value,
         data.targetCurrency.value,
         data.amount,
+        data.sourceCurrency.countryCode,
+        data.targetCurrency.countryCode
       )
       console.log(result)
 

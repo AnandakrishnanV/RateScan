@@ -18,10 +18,10 @@ public class ExchangeRateQuoteAggregatorService {
 	@Autowired
 	private ExchangeRateClientManagerService clientManagerService;
 	
-	public List<ExchangeRateQuote> getExchangeRateFromAllProviders(String sourceCurrency, String targetCurrency, Double sourceAmount, Double targetAmount) {
+	public List<ExchangeRateQuote> getExchangeRateFromAllProviders(String sourceCurrency, String targetCurrency, Double sourceAmount, Double targetAmount, String sourceCountry, String targetCountry) {
 		
 		return clientManagerService.getAllQuoteClients().stream()
-				.map(client -> exchangeRateQuoteService.getQuotes(sourceCurrency, targetCurrency, sourceAmount, targetAmount, client.getProviderName()))
+				.map(client -> exchangeRateQuoteService.getQuotes(sourceCurrency, targetCurrency, sourceAmount, targetAmount, client.getProviderName(), sourceCountry, targetCountry))
 				.collect(Collectors.toList());
 	}
 	

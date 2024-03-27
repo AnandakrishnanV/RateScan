@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 export const apiClient = axios.create({
-  baseURL: 'http://localhost:8080',
+   baseURL: 'http://localhost:5000',
+  // baseURL: 'https://api.ratescan.net/',
 })
 
 export const fetchExchangeRate = async (
@@ -55,6 +56,30 @@ export const fetchQuotes = async (
           targetCurrency,
           sourceAmount,
           // targetAmount,
+        },
+      })
+      return response.data
+    } catch (error) {
+      console.error()
+      throw error
+    }
+  }
+
+  export const fetchQuotesWithCountry = async (
+    sourceCurrency: string,
+    targetCurrency: string,
+    sourceAmount: number,
+    sourceCountry: string,
+    targetCountry: string
+  ) => {
+    try {
+      const response = await apiClient.get('/api/v1/rates/quotes', {
+        params: {
+          sourceCurrency,
+          targetCurrency,
+          sourceAmount,
+          sourceCountry,
+          targetCountry,
         },
       })
       return response.data

@@ -10,14 +10,14 @@ import com.ak.ratecompare.exchangerate.repository.ExchangeRateQuoteRepository;
 // Still Using the public API for now, will change if/when usage hits
 
 @Component
-public class RevolutQuoteApiClient implements ExchangeRateQuoteApiClient{
-	
+public class RevolutQuoteApiClient implements ExchangeRateQuoteApiClient {
+
 	@Autowired
 	private ExchangeRateQuoteRepository exchangeRateQuoteRepository;
-	
+
 	@Autowired
 	private FetchRevolutQuoteFromApi fetchRevolutQuoteFromApi;
-	
+
 	@Override
 	public String getProviderName() {
 		return "Revolut";
@@ -25,12 +25,13 @@ public class RevolutQuoteApiClient implements ExchangeRateQuoteApiClient{
 
 	@Override
 	public ExchangeRateQuote fetchRate(String sourceCurrency, String targetCurrency, Double sourceAmout,
-			Double targetAmount) {
-		
-		ExchangeRateQuote exchangeRateQuote = fetchRevolutQuoteFromApi.fetchQuote(sourceCurrency, targetCurrency, sourceAmout, targetAmount);
+			Double targetAmount, String sourceCountry, String targetCountry) {
+
+		ExchangeRateQuote exchangeRateQuote = fetchRevolutQuoteFromApi.fetchQuote(sourceCurrency, targetCurrency,
+				sourceAmout, targetAmount);
 
 		return exchangeRateQuoteRepository.save(exchangeRateQuote);
 
 	}
-	
+
 }
