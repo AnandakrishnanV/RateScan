@@ -3,8 +3,8 @@ package com.ak.ratecompare.exchangerate.apiclients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ak.ratecompare.exchangerate.apihandlers.FetchRemitlyQuoteFromApi;
-import com.ak.ratecompare.exchangerate.apihandlers.FetchWiseQuoteFromApi;
+import com.ak.ratecompare.exchangerate.apihandlers.remitly.FetchRemitlyQuoteFromApi;
+import com.ak.ratecompare.exchangerate.apihandlers.wise.FetchWiseQuoteFromApi;
 import com.ak.ratecompare.exchangerate.model.exchangeRateQuote.ExchangeRateQuote;
 import com.ak.ratecompare.exchangerate.repository.ExchangeRateQuoteRepository;
 

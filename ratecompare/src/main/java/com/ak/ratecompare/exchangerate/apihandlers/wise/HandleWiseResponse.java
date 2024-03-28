@@ -1,4 +1,4 @@
-package com.ak.ratecompare.exchangerate.apihandlers;
+package com.ak.ratecompare.exchangerate.apihandlers.wise;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

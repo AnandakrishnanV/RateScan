@@ -44,6 +44,7 @@ const App = () => {
                 <div>
                   <QuotesTable />
                   <MissionComponent />
+                  <HowItWorksComponent />
                 </div>
               }
             ></Route>
